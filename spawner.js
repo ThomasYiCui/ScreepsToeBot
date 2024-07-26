@@ -409,7 +409,7 @@ module.exports = {
                                 Memory.datas[spawn.room.name].sources[s] = creepName;
                                 continue;
                             } else if((((creepsRole["hauler"][spawn.room.name].length === 0 || creepsRole["harvester"][spawn.room.name].length === 0) && spawn.room.controller.level < 5) 
-                                    || (creepsRole["hauler"][spawn.room.name].length === 0 && creepsRole["linkHauler"].length === 0 && spawn.room.controller.level === 5) 
+                                    || ((creepsRole["hauler"][spawn.room.name].length === 0 || creepsRole["linkHauler"].length === 0) && spawn.room.controller.level === 5) 
                                     || (creepsRole["linkHauler"].length === 0 && spawn.room.controller.level > 5))) {
                                 if(spawn.spawnCreep(dynamicSpawningRecoveryH(spawn.room), creepName, 
                                     {memory: {role: 'harvester', room: spawn.room.name, sourceToMine: s, roomToMine: Game.getObjectById(s).room.name}}) === OK) {
@@ -463,9 +463,10 @@ module.exports = {
                             }
                         }
                     }
-                    if(Memory.datas[spawn.room.name].sources && energyDropped > (Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0) * Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0)) * 750 + 450) {
+                    console.log(spawn.room.name + ", " + ((Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0) * Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0)) * 550 + 350));
+                    if(Memory.datas[spawn.room.name].sources && energyDropped > (Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0) * Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0)) * 550 + 350) {
                         let creepName = 'RH' + (Game.time % 1651) + spawn.room.name;
-                        if(creepsRole["hauler"][spawn.room.name].length < 2) {
+                        if(creepsRole["hauler"][spawn.room.name].length < 1) {
                             spawn.spawnCreep(dynamicSpawningRecoveryR(spawn.room), creepName, 
                                 {memory: {role: 'hauler', room: spawn.room.name, rth: spawn.room.name}})
                         } else {
