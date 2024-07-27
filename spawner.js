@@ -463,7 +463,7 @@ module.exports = {
                             }
                         }
                     }
-                    console.log(spawn.room.name + ", " + ((Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0) * Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0)) * 550 + 350));
+                    console.log(spawn.room.name + ", " + ((Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0) * Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0)) * Math.min(100 + spawn.room.controller.level * spawn.room.controller.level * 25, 550) + 350));
                     if(Memory.datas[spawn.room.name].sources && energyDropped > (Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0) * Math.max((creepsRole["hauler"][spawn.room.name].length - Object.keys(Memory.datas[spawn.room.name].sources).length), 0)) * 550 + 350) {
                         let creepName = 'RH' + (Game.time % 1651) + spawn.room.name;
                         if(creepsRole["hauler"][spawn.room.name].length < 1) {
